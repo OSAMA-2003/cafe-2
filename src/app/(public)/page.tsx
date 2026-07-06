@@ -2,8 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import { getProducts } from '@/actions/products'
 import { getCafeInfo } from '@/actions/cafe'
-import { Coffee, Sofa, ConciergeBell, MapPin, Phone, Mail, Users, ArrowUpLeft, ArrowLeft } from 'lucide-react'
-import { FadeIn, ScaleIn, SlideIn, StaggerContainer, StaggerItem } from '@/components/public/MotionWrapper'
+import { Coffee, Sofa, ConciergeBell, MapPin, Phone, Mail, ArrowUpLeft, ArrowLeft } from 'lucide-react'
+import { FadeIn, SlideIn, StaggerContainer, StaggerItem } from '@/components/public/MotionWrapper'
 
 // Force dynamic data fetching so homepage loads fresh content
 export const revalidate = 0

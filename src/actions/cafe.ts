@@ -48,7 +48,7 @@ export async function updateCafeInfo(id: string, formData: FormData) {
     const arrayBuffer = await logoFile.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 
-    const { data: storageData, error: storageError } = await supabase.storage
+    const { error: storageError } = await supabase.storage
       .from('cafe-assets')
       .upload(fileName, buffer, {
         contentType: logoFile.type,
@@ -83,7 +83,7 @@ export async function updateCafeInfo(id: string, formData: FormData) {
     const arrayBuffer = await coverFile.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 
-    const { data: storageData, error: storageError } = await supabase.storage
+    const { error: storageError } = await supabase.storage
       .from('cafe-assets')
       .upload(fileName, buffer, {
         contentType: coverFile.type,

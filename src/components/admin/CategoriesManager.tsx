@@ -214,7 +214,7 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
               <TableRow className="hover:bg-transparent">
                 <TableCell colSpan={3} className="text-center py-16 text-zinc-400">
                   <FolderTree className="h-10 w-10 mx-auto mb-3 text-zinc-300 stroke-[1.5]" />
-                  لم يتم العثور على أي أقسام. اضغط على "إضافة قسم جديد" للبدء.
+                  {'لم يتم العثور على أي أقسام. اضغط على "إضافة قسم جديد" للبدء.'}
                 </TableCell>
               </TableRow>
             )}
@@ -267,7 +267,7 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
           <DialogHeader className="text-right">
             <DialogTitle className="text-lg font-bold font-serif text-red-600">تأكيد حذف القسم</DialogTitle>
             <DialogDescription className="text-zinc-500 text-xs mt-1">
-              هل أنت متأكد من رغبتك في حذف القسم <span className="font-bold text-[#031636]">"{deletingCategory?.name}"</span>؟
+              هل أنت متأكد من رغبتك في حذف القسم <span className="font-bold text-[#031636]">&quot;{deletingCategory?.name}&quot;</span>؟
             </DialogDescription>
             <p className="text-[11px] text-red-600 mt-3 bg-red-50 border border-red-100 p-2.5 rounded-lg leading-relaxed">
               تنبيه هام: سيؤدي حذف هذا القسم إلى حذف جميع المنتجات المندرجة تحته تلقائياً من المنيو. لا يمكن التراجع عن هذا الإجراء لاحقاً.

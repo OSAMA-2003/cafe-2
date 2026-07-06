@@ -49,7 +49,7 @@ export async function createProduct(formData: FormData) {
     const arrayBuffer = await imageFile.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 
-    const { data: storageData, error: storageError } = await supabase.storage
+    const { error: storageError } = await supabase.storage
       .from('product-images')
       .upload(fileName, buffer, {
         contentType: imageFile.type,
@@ -122,7 +122,7 @@ export async function updateProduct(id: string, formData: FormData) {
     const arrayBuffer = await imageFile.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 
-    const { data: storageData, error: storageError } = await supabase.storage
+    const { error: storageError } = await supabase.storage
       .from('product-images')
       .upload(fileName, buffer, {
         contentType: imageFile.type,

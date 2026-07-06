@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Coffee, MapPin, Phone } from 'lucide-react'
+import { Coffee } from 'lucide-react'
 import { getCafeInfo } from '@/actions/cafe'
 
 export default async function PublicLayout({

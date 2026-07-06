@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { toast } from 'sonner'
-import { Loader2, Save, Image, Phone, MapPin, Building } from 'lucide-react'
+import { Loader2, Save, ImageIcon, Phone, MapPin, Building } from 'lucide-react'
 
 interface CafeInfoFormProps {
   cafeInfo: CafeInfo | null
@@ -131,7 +131,7 @@ export function CafeInfoForm({ cafeInfo }: CafeInfoFormProps) {
                 <img src={logoPreview} alt="الشعار" className="w-full h-full object-cover" />
               ) : (
                 <div className="h-full w-full flex items-center justify-center text-zinc-300">
-                  <Image className="h-6 w-6" />
+                  <ImageIcon className="h-6 w-6" />
                 </div>
               )}
             </div>
@@ -157,7 +157,7 @@ export function CafeInfoForm({ cafeInfo }: CafeInfoFormProps) {
                 <img src={coverPreview} alt="الغلاف" className="w-full h-full object-cover" />
               ) : (
                 <div className="h-full w-full flex items-center justify-center text-zinc-300">
-                  <Image className="h-6 w-6" />
+                  <ImageIcon className="h-6 w-6" />
                 </div>
               )}
             </div>

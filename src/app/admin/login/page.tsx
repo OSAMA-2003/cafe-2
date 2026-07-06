@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useActionState, startTransition } from 'react'
+import Link from 'next/link'
 import { signIn } from '@/actions/auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -103,12 +104,12 @@ export default function LoginPage() {
               )}
             </Button>
             
-            <a
+            <Link
               href="/"
               className="text-xs text-zinc-400 hover:text-[#775a19] transition-colors duration-200"
             >
               ← العودة للموقع الرئيسي
-            </a>
+            </Link>
           </CardFooter>
         </form>
       </Card>
