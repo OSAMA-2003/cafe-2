@@ -17,10 +17,6 @@ export function MenuGrid({ categories, products }: MenuGridProps) {
 
   // Filter products based on search query and selected category
   const filteredProducts = useMemo(() => {
-    console.log('DEBUG MenuGrid:', {
-      selectedCategory,
-      productsSample: products.slice(0, 3).map(p => ({ id: p.id, name: p.name, category_id: p.category_id }))
-    });
     return products.filter((product) => {
       const matchesCategory =
         selectedCategory === 'all' || product.category_id === selectedCategory
@@ -40,11 +36,10 @@ export function MenuGrid({ categories, products }: MenuGridProps) {
         <div className="flex w-full overflow-x-auto pb-2 md:pb-0 gap-2 scrollbar-none">
           <button
             onClick={() => setSelectedCategory('all')}
-            className={`rounded-full px-5 py-2 text-xs font-bold whitespace-nowrap transition-all duration-200 ${
-              selectedCategory === 'all'
+            className={`rounded-full px-5 py-2 text-xs font-bold whitespace-nowrap transition-all duration-200 ${selectedCategory === 'all'
                 ? 'bg-[#031636] text-[#ffdea5] shadow-md shadow-[#031636]/15'
                 : 'bg-white text-zinc-500 border border-zinc-200 hover:bg-zinc-50 hover:text-zinc-800'
-            }`}
+              }`}
           >
             الكل
           </button>
@@ -52,11 +47,10 @@ export function MenuGrid({ categories, products }: MenuGridProps) {
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className={`rounded-full px-5 py-2 text-xs font-bold whitespace-nowrap transition-all duration-200 ${
-                selectedCategory === category.id
+              className={`rounded-full px-5 py-2 text-xs font-bold whitespace-nowrap transition-all duration-200 ${selectedCategory === category.id
                   ? 'bg-[#031636] text-[#ffdea5] shadow-md shadow-[#031636]/15'
                   : 'bg-white text-zinc-500 border border-zinc-200 hover:bg-zinc-50 hover:text-zinc-800'
-              }`}
+                }`}
             >
               {category.name}
             </button>

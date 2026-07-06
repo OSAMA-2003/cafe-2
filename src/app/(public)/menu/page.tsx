@@ -18,11 +18,9 @@ export default async function MenuPage() {
         {/* Header */}
         <div className="relative text-center max-w-2xl mx-auto mb-16">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-[#ffdea5]/20 blur-[50px] pointer-events-none" />
-          
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#ffdea5]/20 border border-[#ffdea5]/30 text-[#775a19]">
-            <Coffee className="h-6 w-6" />
-          </div>
-          
+
+
+
           <h1 className="font-serif text-3xl sm:text-5xl font-extrabold text-[#031636] tracking-tight">
             قائمة المأكولات والمشروبات
           </h1>
