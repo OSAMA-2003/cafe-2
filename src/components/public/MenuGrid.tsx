@@ -17,6 +17,10 @@ export function MenuGrid({ categories, products }: MenuGridProps) {
 
   // Filter products based on search query and selected category
   const filteredProducts = useMemo(() => {
+    console.log('DEBUG MenuGrid:', {
+      selectedCategory,
+      productsSample: products.slice(0, 3).map(p => ({ id: p.id, name: p.name, category_id: p.category_id }))
+    });
     return products.filter((product) => {
       const matchesCategory =
         selectedCategory === 'all' || product.category_id === selectedCategory
@@ -74,7 +78,7 @@ export function MenuGrid({ categories, products }: MenuGridProps) {
 
       {/* Products Display Grid (High Density: 4 columns on desktop, 2 on mobile) */}
       {filteredProducts.length > 0 ? (
-        <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+        <StaggerContainer key={selectedCategory} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredProducts.map((product) => (
             <StaggerItem
               key={product.id}
