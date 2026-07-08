@@ -2,7 +2,7 @@
 
 import React, { useState, useTransition, useMemo } from 'react'
 import { Category } from '@/types'
-import { addCategory, updateCategory, deleteCategory } from '@/actions/categories'
+import { createCategory, updateCategory, deleteCategory } from '@/actions/categories'
 import { Search, Plus, Loader2, Pencil, Trash2, FolderTree } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -33,6 +33,11 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
   const [deletingCategory, setDeletingCategory] = useState<Category | null>(null)
 
+  // Sync category changes from props if page re-renders
+  React.useEffect(() => {
+    setCategories(initialCategories)
+  }, [initialCategories])
+
   // Filter categories
   const filteredCategories = useMemo(() => {
     return categories.filter((c) =>
@@ -42,26 +47,26 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
 
   const handleAdd = () => {
     if (!newCategoryName.trim()) {
-      toast.error('يرجى إدخال اسم القسم')
+      toast.error('اسم القسم لا يمكن أن يكون فارغاً')
       return
     }
 
     startTransition(async () => {
-      const res = await addCategory(newCategoryName.trim())
+      const res = await createCategory(newCategoryName.trim())
       if (res.error) {
         toast.error(res.error)
-      } else if (res.category) {
-        setCategories((prev) => [res.category!, ...prev])
+      } else {
+        toast.success('تم إنشاء القسم بنجاح!')
         setNewCategoryName('')
         setIsAddOpen(false)
-        toast.success('تمت إضافة القسم بنجاح!')
       }
     })
   }
 
   const handleEdit = () => {
-    if (!editingCategory || !editingName.trim()) {
-      toast.error('يرجى إدخال اسم القسم')
+    if (!editingCategory) return
+    if (!editingName.trim()) {
+      toast.error('اسم القسم لا يمكن أن يكون فارغاً')
       return
     }
 
@@ -69,13 +74,11 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
       const res = await updateCategory(editingCategory.id, editingName.trim())
       if (res.error) {
         toast.error(res.error)
-      } else if (res.category) {
-        setCategories((prev) =>
-          prev.map((c) => (c.id === editingCategory.id ? res.category! : c))
-        )
-        setIsEditOpen(false)
-        setEditingCategory(null)
+      } else {
         toast.success('تم تحديث اسم القسم بنجاح!')
+        setEditingCategory(null)
+        setEditingName('')
+        setIsEditOpen(false)
       }
     })
   }
@@ -88,7 +91,6 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
       if (res.error) {
         toast.error(res.error)
       } else {
-        setCategories((prev) => prev.filter((c) => c.id !== deletingCategory.id))
         toast.success('تم حذف القسم بنجاح!')
         setDeletingCategory(null)
         setIsDeleteOpen(false)
