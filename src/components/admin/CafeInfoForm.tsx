@@ -72,7 +72,7 @@ export function CafeInfoForm({ cafeInfo }: CafeInfoFormProps) {
                 id="name"
                 name="name"
                 defaultValue={cafeInfo.name}
-                className="pr-10 pl-4 border-[#775a19]/20 bg-white text-[#031636] focus-visible:ring-[#775a19] text-right"
+                className="pr-10 pl-4 border-[#211a21]/20 bg-white text-[#211a21] focus-visible:ring-[#211a21] text-right"
                 required
               />
             </div>
@@ -86,7 +86,7 @@ export function CafeInfoForm({ cafeInfo }: CafeInfoFormProps) {
                 id="phone"
                 name="phone"
                 defaultValue={cafeInfo.phone || ''}
-                className="pr-10 pl-4 border-[#775a19]/20 bg-white text-[#031636] focus-visible:ring-[#775a19] text-right"
+                className="pr-10 pl-4 border-[#211a21]/20 bg-white text-[#211a21] focus-visible:ring-[#211a21] text-right"
                 dir="ltr"
               />
             </div>
@@ -100,7 +100,7 @@ export function CafeInfoForm({ cafeInfo }: CafeInfoFormProps) {
                 id="address"
                 name="address"
                 defaultValue={cafeInfo.address || ''}
-                className="pr-10 pl-4 border-[#775a19]/20 bg-white text-[#031636] focus-visible:ring-[#775a19] min-h-[80px] text-right"
+                className="pr-10 pl-4 border-[#211a21]/20 bg-white text-[#211a21] focus-visible:ring-[#211a21] min-h-[80px] text-right"
               />
             </div>
           </div>
@@ -114,19 +114,19 @@ export function CafeInfoForm({ cafeInfo }: CafeInfoFormProps) {
               id="description"
               name="description"
               defaultValue={cafeInfo.description || ''}
-              className="border-[#775a19]/20 bg-white text-[#031636] focus-visible:ring-[#775a19] min-h-[178px] text-right leading-relaxed"
+              className="border-[#211a21]/20 bg-white text-[#211a21] focus-visible:ring-[#211a21] min-h-[178px] text-right leading-relaxed"
             />
           </div>
         </div>
       </div>
 
       {/* Asset Upload Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-[#775a19]/10 pt-6 text-right">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-[#5a4d5a]/10 pt-6 text-right">
         {/* Logo upload */}
         <div className="space-y-3">
           <Label className="text-zinc-600 font-semibold">شعار المقهى</Label>
           <div className="flex items-center gap-4 flex-row-reverse">
-            <div className="h-16 w-16 rounded-xl overflow-hidden bg-zinc-100 border border-[#775a19]/10 shrink-0">
+            <div className="h-16 w-16 rounded-xl overflow-hidden bg-zinc-100 border border-[#5a4d5a]/10 shrink-0">
               {logoPreview ? (
                 <img src={logoPreview} alt="الشعار" className="w-full h-full object-cover" />
               ) : (
@@ -152,7 +152,7 @@ export function CafeInfoForm({ cafeInfo }: CafeInfoFormProps) {
         <div className="space-y-3">
           <Label className="text-zinc-600 font-semibold">صورة الغلاف</Label>
           <div className="flex items-center gap-4 flex-row-reverse">
-            <div className="h-16 w-28 rounded-xl overflow-hidden bg-zinc-100 border border-[#775a19]/10 shrink-0">
+            <div className="h-16 w-28 rounded-xl overflow-hidden bg-zinc-100 border border-[#5a4d5a]/10 shrink-0">
               {coverPreview ? (
                 <img src={coverPreview} alt="الغلاف" className="w-full h-full object-cover" />
               ) : (
@@ -175,11 +175,11 @@ export function CafeInfoForm({ cafeInfo }: CafeInfoFormProps) {
         </div>
       </div>
 
-      <div className="flex justify-end border-t border-[#775a19]/10 pt-5">
+      <div className="flex justify-end border-t border-[#5a4d5a]/10 pt-5">
         <Button
           type="submit"
           disabled={isPending}
-          className="bg-[#031636] hover:bg-[#1a2b4c] text-[#ffdea5] border border-[#ffdea5]/30 font-bold gap-2 transition-all duration-200 shadow-md hover:shadow-[#031636]/15"
+          className="bg-[#211a21] hover:bg-[#2e242e] text-white border border-transparent font-bold gap-2 transition-all duration-200 shadow-md hover:shadow-[#211a21]/15"
         >
           {isPending ? (
             <>

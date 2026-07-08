@@ -196,16 +196,16 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
               placeholder="ابحث عن منتج..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pr-10 pl-4 border-[#775a19]/25 bg-white text-[#031636] focus-visible:ring-[#775a19] rounded-lg text-right"
+              className="pr-10 pl-4 border-[#211a21]/20 bg-white text-[#211a21] focus-visible:ring-[#211a21] rounded-lg text-right"
             />
           </div>
 
           {/* Category Filter */}
           <Select value={selectedCategoryFilter} onValueChange={(val) => setSelectedCategoryFilter(val || 'all')}>
-            <SelectTrigger className="w-full sm:w-48 border-[#775a19]/25 bg-white text-[#031636] focus:ring-[#775a19] text-right">
+            <SelectTrigger className="w-full sm:w-48 border-[#211a21]/20 bg-white text-[#211a21] focus:ring-[#211a21] text-right">
               <SelectValue placeholder="جميع الأقسام" />
             </SelectTrigger>
-            <SelectContent className="bg-white border-zinc-200 text-[#031636] text-right">
+            <SelectContent className="bg-white border-zinc-200 text-[#211a21] text-right">
               <SelectItem value="all">جميع الأقسام</SelectItem>
               {categories.map((cat) => (
                 <SelectItem key={cat.id} value={cat.id}>
@@ -217,16 +217,16 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
         </div>
 
         {/* Add Product Trigger */}
-        <Button onClick={() => setIsAddOpen(true)} className="w-full sm:w-auto bg-[#031636] hover:bg-[#1a2b4c] text-[#ffdea5] border border-[#ffdea5]/30 font-bold gap-2 transition-all duration-200 shadow-md">
+        <Button onClick={() => setIsAddOpen(true)} className="w-full sm:w-auto bg-[#211a21] hover:bg-[#2e242e] text-white border border-transparent font-bold gap-2 transition-all duration-200 shadow-md">
           <Plus className="h-4 w-4" />
           إضافة منتج جديد
         </Button>
 
         <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
-          <DialogContent className="border-zinc-200 bg-white text-[#031636] backdrop-blur-md max-w-lg text-right">
+          <DialogContent className="border-zinc-200 bg-white text-[#211a21] backdrop-blur-md max-w-lg text-right">
             <form onSubmit={handleAddSubmit}>
               <DialogHeader className="text-right">
-                <DialogTitle className="text-lg font-bold font-serif text-[#031636]">إضافة منتج جديد</DialogTitle>
+                <DialogTitle className="text-lg font-bold font-serif text-[#211a21]">إضافة منتج جديد</DialogTitle>
                 <DialogDescription className="text-zinc-500 text-xs mt-1">
                   أنشئ منتجاً جديداً في المنيو. الحقول المميزة بعلامة * هي حقول إجبارية.
                 </DialogDescription>
@@ -241,12 +241,12 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                       placeholder="مثال: لافندر لاتيه"
                       value={addFormState.name}
                       onChange={(e) => setAddFormState({ ...addFormState, name: e.target.value })}
-                      className="border-[#775a19]/25 bg-white text-[#031636] focus-visible:ring-[#775a19] text-right"
+                      className="border-[#211a21]/20 bg-white text-[#211a21] focus-visible:ring-[#211a21] text-right"
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="add-price" className="text-zinc-600 font-semibold">السعر (ر.س) *</Label>
+                    <Label htmlFor="add-price" className="text-zinc-600 font-semibold">السعر *</Label>
                     <Input
                       id="add-price"
                       type="number"
@@ -254,7 +254,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                       placeholder="25.00"
                       value={addFormState.price}
                       onChange={(e) => setAddFormState({ ...addFormState, price: e.target.value })}
-                      className="border-[#775a19]/25 bg-white text-[#031636] focus-visible:ring-[#775a19] text-right"
+                      className="border-[#211a21]/20 bg-white text-[#211a21] focus-visible:ring-[#211a21] text-right"
                       required
                     />
                   </div>
@@ -267,10 +267,10 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                       value={addFormState.category_id}
                       onValueChange={(val) => setAddFormState({ ...addFormState, category_id: val || '' })}
                     >
-                      <SelectTrigger className="border-[#775a19]/25 bg-white text-[#031636] focus:ring-[#775a19] text-right">
+                      <SelectTrigger className="border-[#211a21]/20 bg-white text-[#211a21] focus:ring-[#211a21] text-right">
                         <SelectValue placeholder="اختر القسم" />
                       </SelectTrigger>
-                      <SelectContent className="bg-white border-zinc-200 text-[#031636]">
+                      <SelectContent className="bg-white border-zinc-200 text-[#211a21]">
                         {categories.map((cat) => (
                           <SelectItem key={cat.id} value={cat.id}>
                             {cat.name}
@@ -292,7 +292,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                       />
                     </div>
                     <div className="flex items-center gap-3 justify-end pr-2">
-                      <Label htmlFor="add-featured" className="text-[#775a19] font-semibold cursor-pointer text-xs">
+                      <Label htmlFor="add-featured" className="text-[#211a21] font-semibold cursor-pointer text-xs">
                         عرض في المميزة
                       </Label>
                       <Switch
@@ -311,14 +311,14 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                     placeholder="صف نكهة المنتج، حجمه، ومكوناته للمشترين..."
                     value={addFormState.description}
                     onChange={(e) => setAddFormState({ ...addFormState, description: e.target.value })}
-                    className="border-[#775a19]/25 bg-white text-[#031636] focus-visible:ring-[#775a19] min-h-[70px] text-right leading-relaxed"
+                    className="border-[#211a21]/20 bg-white text-[#211a21] focus-visible:ring-[#211a21] min-h-[70px] text-right leading-relaxed"
                   />
                 </div>
 
                 <div className="space-y-2.5">
                   <Label className="text-zinc-600 font-semibold">صورة المنتج</Label>
                   <div className="flex items-center gap-4 flex-row-reverse">
-                    <div className="h-16 w-16 rounded-lg overflow-hidden bg-zinc-100 border border-[#775a19]/10 shrink-0 flex items-center justify-center text-zinc-300">
+                    <div className="h-16 w-16 rounded-lg overflow-hidden bg-zinc-100 border border-[#211a21]/10 shrink-0 flex items-center justify-center text-zinc-300">
                       {addFormState.imagePreview ? (
                         <img src={addFormState.imagePreview} alt="المعاينة" className="w-full h-full object-cover" />
                       ) : (
@@ -356,7 +356,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                 <Button
                   type="submit"
                   disabled={isPending}
-                  className="bg-[#031636] hover:bg-[#1a2b4c] text-[#ffdea5] font-semibold"
+                  className="bg-[#211a21] hover:bg-[#2e242e] text-white font-semibold"
                 >
                   {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : 'إضافة المنتج'}
                 </Button>
@@ -367,17 +367,17 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
       </div>
 
       {/* Product List Table */}
-      <div className="rounded-xl border border-[#775a19]/10 bg-white overflow-hidden shadow-sm">
+      <div className="rounded-xl border border-[#211a21]/15 bg-white overflow-hidden shadow-sm">
         <Table className="text-right">
           <TableHeader className="bg-zinc-50/50">
             <TableRow className="border-zinc-100 hover:bg-transparent">
-              <TableHead className="w-[80px] text-right text-[#031636] font-bold pr-6">الصورة</TableHead>
-              <TableHead className="text-right text-[#031636] font-bold">الاسم</TableHead>
-              <TableHead className="text-right text-[#031636] font-bold">القسم</TableHead>
-              <TableHead className="text-right text-[#031636] font-bold">السعر</TableHead>
-              <TableHead className="text-right text-[#031636] font-bold">متوفر</TableHead>
-              <TableHead className="text-right text-[#031636] font-bold">مميز</TableHead>
-              <TableHead className="text-left text-[#031636] font-bold pl-6">الإجراءات</TableHead>
+              <TableHead className="w-[80px] text-right text-[#211a21] font-bold pr-6">الصورة</TableHead>
+              <TableHead className="text-right text-[#211a21] font-bold">الاسم</TableHead>
+              <TableHead className="text-right text-[#211a21] font-bold">القسم</TableHead>
+              <TableHead className="text-right text-[#211a21] font-bold">السعر</TableHead>
+              <TableHead className="text-right text-[#211a21] font-bold">متوفر</TableHead>
+              <TableHead className="text-right text-[#211a21] font-bold">مميز</TableHead>
+              <TableHead className="text-left text-[#211a21] font-bold pl-6">الإجراءات</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -386,7 +386,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                 <TableRow key={product.id} className="border-zinc-100 hover:bg-zinc-50/30 transition-colors">
                   {/* Photo cell */}
                   <TableCell className="pr-6 py-3">
-                    <div className="h-10 w-10 rounded-lg overflow-hidden bg-zinc-100 border border-[#775a19]/10 flex items-center justify-center shrink-0">
+                    <div className="h-10 w-10 rounded-lg overflow-hidden bg-zinc-100 border border-[#211a21]/10 flex items-center justify-center shrink-0">
                       {product.image_url ? (
                         <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" />
                       ) : (
@@ -396,7 +396,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                   </TableCell>
 
                   {/* Name cell */}
-                  <TableCell className="font-semibold text-[#031636]">
+                  <TableCell className="font-semibold text-[#211a21]">
                     <div>
                       <p>{product.name}</p>
                       {product.description && (
@@ -413,8 +413,11 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                   </TableCell>
 
                   {/* Price cell */}
-                  <TableCell className="font-bold text-[#775a19] text-sm">
-                    {Number(product.price).toFixed(2)} ر.س
+                  <TableCell className="font-bold text-[#211a21] text-sm">
+                    <span className="flex items-center gap-1 justify-end">
+                      <span>{Number(product.price).toFixed(2)}</span>
+                      <img src="/Saudi_Riyal_Symbol.webp" alt="ر.س" className="h-4 w-auto object-contain select-none" />
+                    </span>
                   </TableCell>
 
                   {/* Available cell */}
@@ -455,7 +458,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                         })
                         setIsEditOpen(true)
                       }}
-                      className="text-zinc-400 hover:bg-[#ffdea5]/25 hover:text-[#775a19] h-8 w-8"
+                      className="text-zinc-400 hover:bg-[#211a21]/5 hover:text-[#211a21] h-8 w-8"
                     >
                       <Pencil className="h-4 w-4" />
                     </Button>
@@ -489,10 +492,10 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
 
       {/* Edit Product Dialog */}
       <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
-        <DialogContent className="border-zinc-200 bg-white text-[#031636] backdrop-blur-md max-w-lg text-right">
+        <DialogContent className="border-zinc-200 bg-white text-[#211a21] backdrop-blur-md max-w-lg text-right">
           <form onSubmit={handleEditSubmit}>
             <DialogHeader className="text-right">
-              <DialogTitle className="text-lg font-bold font-serif text-[#031636]">تعديل بيانات المنتج</DialogTitle>
+              <DialogTitle className="text-lg font-bold font-serif text-[#211a21]">تعديل بيانات المنتج</DialogTitle>
               <DialogDescription className="text-zinc-500 text-xs mt-1">
                 قم بتعديل بيانات المنتج. سيتم تحديث التعديلات فور الحفظ.
               </DialogDescription>
@@ -506,19 +509,19 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                     id="edit-name-field"
                     value={editFormState.name}
                     onChange={(e) => setEditFormState({ ...editFormState, name: e.target.value })}
-                    className="border-[#775a19]/25 bg-white text-[#031636] focus-visible:ring-[#775a19] text-right"
+                    className="border-[#211a21]/20 bg-white text-[#211a21] focus-visible:ring-[#211a21] text-right"
                     required
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="edit-price-field" className="text-zinc-600 font-semibold">السعر (ر.س) *</Label>
+                  <Label htmlFor="edit-price-field" className="text-zinc-600 font-semibold">السعر *</Label>
                   <Input
                     id="edit-price-field"
                     type="number"
                     step="0.01"
                     value={editFormState.price}
                     onChange={(e) => setEditFormState({ ...editFormState, price: e.target.value })}
-                    className="border-[#775a19]/25 bg-white text-[#031636] focus-visible:ring-[#775a19] text-right"
+                    className="border-[#211a21]/20 bg-white text-[#211a21] focus-visible:ring-[#211a21] text-right"
                     required
                   />
                 </div>
@@ -531,10 +534,10 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                     value={editFormState.category_id}
                     onValueChange={(val) => setEditFormState({ ...editFormState, category_id: val || '' })}
                   >
-                    <SelectTrigger className="border-[#775a19]/25 bg-white text-[#031636] focus:ring-[#775a19] text-right">
+                    <SelectTrigger className="border-[#211a21]/20 bg-white text-[#211a21] focus:ring-[#211a21] text-right">
                       <SelectValue placeholder="اختر القسم" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-zinc-200 text-[#031636]">
+                    <SelectContent className="bg-white border-zinc-200 text-[#211a21]">
                       {categories.map((cat) => (
                         <SelectItem key={cat.id} value={cat.id}>
                           {cat.name}
@@ -556,7 +559,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                     />
                   </div>
                   <div className="flex items-center gap-3 justify-end pr-2">
-                    <Label htmlFor="edit-featured" className="text-[#775a19] font-semibold cursor-pointer text-xs">
+                    <Label htmlFor="edit-featured" className="text-[#211a21] font-semibold cursor-pointer text-xs">
                       عرض في المميزة
                     </Label>
                     <Switch
@@ -575,14 +578,14 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
                   placeholder="وصف نكهة وحجم ومكونات المنتج..."
                   value={editFormState.description}
                   onChange={(e) => setEditFormState({ ...editFormState, description: e.target.value })}
-                  className="border-[#775a19]/25 bg-white text-[#031636] focus-visible:ring-[#775a19] min-h-[70px] text-right leading-relaxed"
+                  className="border-[#211a21]/20 bg-white text-[#211a21] focus-visible:ring-[#211a21] min-h-[70px] text-right leading-relaxed"
                 />
               </div>
 
               <div className="space-y-2.5">
                 <Label className="text-zinc-600 font-semibold">صورة المنتج</Label>
                 <div className="flex items-center gap-4 flex-row-reverse">
-                  <div className="h-16 w-16 rounded-lg overflow-hidden bg-zinc-100 border border-[#775a19]/10 shrink-0 flex items-center justify-center text-zinc-300">
+                  <div className="h-16 w-16 rounded-lg overflow-hidden bg-zinc-100 border border-[#211a21]/10 shrink-0 flex items-center justify-center text-zinc-300">
                     {editFormState.imagePreview ? (
                       <img src={editFormState.imagePreview} alt="المعاينة" className="w-full h-full object-cover" />
                     ) : (
@@ -620,7 +623,7 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
               <Button
                 type="submit"
                 disabled={isPending}
-                className="bg-[#031636] hover:bg-[#1a2b4c] text-[#ffdea5] font-semibold"
+                className="bg-[#211a21] hover:bg-[#2e242e] text-white font-semibold"
               >
                 {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : 'حفظ التعديلات'}
               </Button>
@@ -631,13 +634,13 @@ export function ProductsManager({ initialProducts, categories }: ProductsManager
 
       {/* Confirm Delete Dialog */}
       <Dialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
-        <DialogContent className="border-zinc-200 bg-white text-[#031636] backdrop-blur-md max-w-md text-right">
+        <DialogContent className="border-zinc-200 bg-white text-[#211a21] backdrop-blur-md max-w-md text-right">
           <DialogHeader className="text-right">
             <DialogTitle className="text-lg font-bold font-serif text-red-600">تأكيد حذف المنتج</DialogTitle>
             <DialogDescription className="text-zinc-500 text-xs mt-1">
-              هل أنت متأكد من رغبتك في حذف المنتج <span className="font-bold text-[#031636]">&quot;{deletingProduct?.name}&quot;</span>؟
+              هل أنت متأكد من رغبتك في حذف المنتج <span className="font-bold text-[#211a21]">&quot;{deletingProduct?.name}&quot;</span>؟
             </DialogDescription>
-            <p className="text-[11px] text-[#44474e] mt-3 bg-zinc-50 border border-zinc-100 p-2.5 rounded-lg leading-relaxed">
+            <p className="text-[11px] text-[#5a4d5a] mt-3 bg-zinc-50 border border-zinc-100 p-2.5 rounded-lg leading-relaxed">
               سيتم إزالة هذا المنتج وصورته التابعة له نهائياً من الخادم وقاعدة البيانات. لا يمكن التراجع عن هذا الإجراء لاحقاً.
             </p>
           </DialogHeader>

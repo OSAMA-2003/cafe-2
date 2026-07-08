@@ -18,7 +18,7 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="flex min-h-screen flex-col lg:flex-row bg-[#fbf9f8] text-[#031636]">
+    <div className="flex min-h-screen flex-col lg:flex-row bg-[#fcfafc] text-[#211a21]">
       <Sidebar email={user.email} />
       <main className="flex-1 overflow-y-auto px-6 py-6 lg:py-8 lg:px-10">
         <div className="mx-auto max-w-6xl w-full">

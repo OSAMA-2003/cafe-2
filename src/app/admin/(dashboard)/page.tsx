@@ -25,7 +25,7 @@ export default async function AdminDashboardPage() {
       value: totalProducts,
       description: 'العناصر المسجلة في قائمة المنيو',
       icon: Coffee,
-      colorClass: 'text-[#775a19] bg-[#ffdea5]/20 border-[#ffdea5]/30',
+      colorClass: 'text-[#211a21] bg-[#211a21]/5 border-[#211a21]/15',
     },
     {
       title: 'المنتجات المتوفرة',
@@ -39,7 +39,7 @@ export default async function AdminDashboardPage() {
       value: totalCategories,
       description: 'التصنيفات المتاحة لتنظيم المنيو',
       icon: FolderTree,
-      colorClass: 'text-[#031636] bg-[#031636]/5 border-[#031636]/10',
+      colorClass: 'text-[#5a4d5a] bg-[#5a4d5a]/5 border-[#5a4d5a]/15',
     },
   ]
 
@@ -47,10 +47,10 @@ export default async function AdminDashboardPage() {
     <div className="space-y-8">
       {/* Page Title */}
       <div className="flex flex-col gap-1.5 text-right">
-        <h1 className="font-serif text-3xl font-extrabold tracking-tight text-[#031636]">
+        <h1 className="font-serif text-3xl font-extrabold tracking-tight text-[#211a21]">
           لوحة التحكم
         </h1>
-        <p className="text-xs text-[#44474e]">
+        <p className="text-xs text-[#5a4d5a]">
           نظرة سريعة على إحصائيات المنيو وتعديل الملف التعريفي للمقهى.
         </p>
       </div>
@@ -60,11 +60,11 @@ export default async function AdminDashboardPage() {
         {stats.map((stat, idx) => {
           const Icon = stat.icon
           return (
-            <Card key={idx} className="bg-white border-[#775a19]/10 relative overflow-hidden shadow-sm">
+            <Card key={idx} className="bg-white border-[#5a4d5a]/10 relative overflow-hidden shadow-sm">
               <CardContent className="p-6 flex items-center justify-between gap-4 text-right">
                 <div className="space-y-1">
-                  <p className="text-xs font-semibold text-[#44474e]">{stat.title}</p>
-                  <p className="text-3xl font-bold tracking-tight text-[#031636]">{stat.value}</p>
+                  <p className="text-xs font-semibold text-[#5a4d5a]">{stat.title}</p>
+                  <p className="text-3xl font-bold tracking-tight text-[#211a21]">{stat.value}</p>
                   <p className="text-[10px] text-zinc-400">{stat.description}</p>
                 </div>
                 <div className={`h-11 w-11 rounded-lg flex items-center justify-center shrink-0 border ${stat.colorClass}`}>
@@ -77,14 +77,14 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Profile Management Section */}
-      <Card className="bg-white border-[#775a19]/15 overflow-hidden relative shadow-md">
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#ffdea5] via-[#fed488] to-[#ffdea5]" />
-        <CardHeader className="p-6 border-b border-[#775a19]/10 flex flex-row items-center gap-3 text-right">
-          <div className="h-9 w-9 rounded-lg bg-[#ffdea5]/20 border border-[#ffdea5]/30 text-[#775a19] flex items-center justify-center shrink-0">
+      <Card className="bg-white border-[#5a4d5a]/15 overflow-hidden relative shadow-md">
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#211a21] via-[#5a4d5a] to-[#211a21]" />
+        <CardHeader className="p-6 border-b border-[#5a4d5a]/10 flex flex-row items-center gap-3 text-right">
+          <div className="h-9 w-9 rounded-lg bg-[#211a21]/5 border border-[#211a21]/15 text-[#211a21] flex items-center justify-center shrink-0">
             <Building className="h-5 w-5" />
           </div>
           <div>
-            <CardTitle className="text-lg font-bold text-[#031636] font-serif">بيانات ومظهر المقهى</CardTitle>
+            <CardTitle className="text-lg font-bold text-[#211a21] font-serif">بيانات ومظهر المقهى</CardTitle>
             <CardDescription className="text-xs text-zinc-400 mt-0.5">
               إدارة الاسم، والوصف، وصورة الغلاف، وشعار المقهى، والعنوان وبيانات الاتصال.
             </CardDescription>

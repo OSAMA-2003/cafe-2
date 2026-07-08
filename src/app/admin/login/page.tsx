@@ -25,20 +25,20 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center bg-[#fbf9f8] px-4 overflow-hidden">
+    <div className="relative min-h-screen w-full flex items-center justify-center bg-[#fcfafc] px-4 overflow-hidden">
       {/* Decorative Ornaments (Brand Colors) */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-[#ffdea5]/20 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-96 h-96 rounded-full bg-[#775a19]/5 blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-[#211a21]/10 blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-96 h-96 rounded-full bg-[#5a4d5a]/5 blur-[100px] pointer-events-none" />
 
-      <Card className="relative w-full max-w-md overflow-hidden border-[#775a19]/15 bg-white shadow-xl rounded-2xl">
-        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#ffdea5] via-[#775a19] to-[#fed488]" />
+      <Card className="relative w-full max-w-md overflow-hidden border-[#5a4d5a]/15 bg-white shadow-xl rounded-2xl">
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#211a21] via-[#5a4d5a] to-[#211a21]" />
         
         <CardHeader className="pt-10 pb-6 text-center">
           <div className="mx-auto mb-4 flex h-16 w-auto items-center justify-center">
-            <img src="/logo.png" alt="سويه كافيه" className="h-14 w-auto object-contain drop-shadow-sm" />
+            <img src="/logo.png" alt="VO كافيه" className="h-14 w-auto object-contain drop-shadow-sm" />
           </div>
-          <CardTitle className="text-2xl font-bold tracking-tight text-[#031636] font-serif">
-            لوحة تحكم سويه كافيه
+          <CardTitle className="text-2xl font-bold tracking-tight text-[#211a21] font-serif">
+            لوحة تحكم VO CAFE
           </CardTitle>
           <CardDescription className="text-zinc-400 text-xs mt-1.5">
             سجل الدخول لإدارة المنيو، الأقسام، والمظهر العام للموقع.
@@ -54,7 +54,7 @@ export default function LoginPage() {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-[#031636] font-semibold text-xs">
+              <Label htmlFor="email" className="text-[#211a21] font-semibold text-xs">
                 البريد الإلكتروني
               </Label>
               <div className="relative">
@@ -64,14 +64,14 @@ export default function LoginPage() {
                   name="email"
                   type="email"
                   placeholder="admin@cafe.com"
-                  className="pr-10 pl-4 border-zinc-200 bg-white text-[#031636] placeholder-zinc-400 focus-visible:ring-[#775a19] focus-visible:border-[#775a19] text-right rounded-lg"
+                  className="pr-10 pl-4 border-zinc-200 bg-white text-[#211a21] placeholder-zinc-400 focus-visible:ring-[#211a21] focus-visible:border-[#211a21] text-right rounded-lg"
                   required
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-[#031636] font-semibold text-xs">
+              <Label htmlFor="password" className="text-[#211a21] font-semibold text-xs">
                 كلمة المرور
               </Label>
               <div className="relative">
@@ -81,7 +81,7 @@ export default function LoginPage() {
                   name="password"
                   type="password"
                   placeholder="••••••••"
-                  className="pr-10 pl-4 border-zinc-200 bg-white text-[#031636] placeholder-zinc-400 focus-visible:ring-[#775a19] focus-visible:border-[#775a19] text-right rounded-lg"
+                  className="pr-10 pl-4 border-zinc-200 bg-white text-[#211a21] placeholder-zinc-400 focus-visible:ring-[#211a21] focus-visible:border-[#211a21] text-right rounded-lg"
                   required
                 />
               </div>
@@ -92,11 +92,11 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={isPending}
-              className="w-full bg-[#031636] hover:bg-[#1a2b4c] text-[#ffdea5] border border-[#ffdea5]/30 font-bold py-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+              className="w-full bg-[#211a21] hover:bg-[#2e242e] text-white border border-transparent font-bold py-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
             >
               {isPending ? (
                 <span className="flex items-center gap-2">
-                  <Loader2 className="h-4 w-4 animate-spin text-[#ffdea5]" />
+                  <Loader2 className="h-4 w-4 animate-spin text-white" />
                   جاري التحقق...
                 </span>
               ) : (
@@ -106,7 +106,7 @@ export default function LoginPage() {
             
             <Link
               href="/"
-              className="text-xs text-zinc-400 hover:text-[#775a19] transition-colors duration-200"
+              className="text-xs text-zinc-400 hover:text-[#211a21] transition-colors duration-200"
             >
               ← العودة للموقع الرئيسي
             </Link>

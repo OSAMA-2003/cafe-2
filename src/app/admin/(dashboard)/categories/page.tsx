@@ -11,10 +11,10 @@ export default async function AdminCategoriesPage() {
     <div className="space-y-6">
       {/* Title */}
       <div className="flex flex-col gap-1 text-right">
-        <h1 className="font-serif text-3xl font-bold tracking-tight text-[#031636]">
+        <h1 className="font-serif text-3xl font-bold tracking-tight text-[#211a21]">
           إدارة الأقسام
         </h1>
-        <p className="text-xs text-[#44474e]">
+        <p className="text-xs text-[#5a4d5a]">
           إضافة وتعديل وحذف أقسام المنيو لتنظيم المأكولات والمشروبات.
         </p>
       </div>

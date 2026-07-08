@@ -1,15 +1,15 @@
 'use client'
 
-import React, { useState, useMemo, useTransition } from 'react'
+import React, { useState, useTransition, useMemo } from 'react'
 import { Category } from '@/types'
-import { createCategory, updateCategory, deleteCategory } from '@/actions/categories'
-import { Button } from '@/components/ui/button'
+import { addCategory, updateCategory, deleteCategory } from '@/actions/categories'
+import { Search, Plus, Loader2, Pencil, Trash2, FolderTree } from 'lucide-react'
 import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { Label } from '@/components/ui/label'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
-import { Plus, Pencil, Trash2, Loader2, FolderTree, Search } from 'lucide-react'
 
 interface CategoriesManagerProps {
   initialCategories: Category[]
@@ -20,64 +20,62 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
   const [searchQuery, setSearchQuery] = useState('')
   const [isPending, startTransition] = useTransition()
 
-  // Modal / Input States
+  // Add Dialog State
   const [isAddOpen, setIsAddOpen] = useState(false)
   const [newCategoryName, setNewCategoryName] = useState('')
 
+  // Edit Dialog State
   const [isEditOpen, setIsEditOpen] = useState(false)
   const [editingCategory, setEditingCategory] = useState<Category | null>(null)
   const [editingName, setEditingName] = useState('')
 
+  // Delete Dialog State
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
   const [deletingCategory, setDeletingCategory] = useState<Category | null>(null)
 
-  // Sync category changes from props if page re-renders
-  React.useEffect(() => {
-    setCategories(initialCategories)
-  }, [initialCategories])
-
-  // Filter list
+  // Filter categories
   const filteredCategories = useMemo(() => {
-    return categories.filter((cat) =>
-      cat.name.toLowerCase().includes(searchQuery.toLowerCase())
+    return categories.filter((c) =>
+      c.name.toLowerCase().includes(searchQuery.toLowerCase())
     )
   }, [categories, searchQuery])
 
-  // Actions
   const handleAdd = () => {
     if (!newCategoryName.trim()) {
-      toast.error('اسم القسم لا يمكن أن يكون فارغاً')
+      toast.error('يرجى إدخال اسم القسم')
       return
     }
 
     startTransition(async () => {
-      const res = await createCategory(newCategoryName)
+      const res = await addCategory(newCategoryName.trim())
       if (res.error) {
         toast.error(res.error)
-      } else {
-        toast.success('تم إنشاء القسم بنجاح!')
+      } else if (res.category) {
+        setCategories((prev) => [res.category!, ...prev])
         setNewCategoryName('')
         setIsAddOpen(false)
+        toast.success('تمت إضافة القسم بنجاح!')
       }
     })
   }
 
   const handleEdit = () => {
-    if (!editingCategory) return
-    if (!editingName.trim()) {
-      toast.error('اسم القسم لا يمكن أن يكون فارغاً')
+    if (!editingCategory || !editingName.trim()) {
+      toast.error('يرجى إدخال اسم القسم')
       return
     }
 
     startTransition(async () => {
-      const res = await updateCategory(editingCategory.id, editingName)
+      const res = await updateCategory(editingCategory.id, editingName.trim())
       if (res.error) {
         toast.error(res.error)
-      } else {
-        toast.success('تم تحديث اسم القسم بنجاح!')
-        setEditingCategory(null)
-        setEditingName('')
+      } else if (res.category) {
+        setCategories((prev) =>
+          prev.map((c) => (c.id === editingCategory.id ? res.category! : c))
+        )
         setIsEditOpen(false)
+        setEditingCategory(null)
+        toast.success('تم تحديث اسم القسم بنجاح!')
       }
     })
   }
@@ -90,6 +88,7 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
       if (res.error) {
         toast.error(res.error)
       } else {
+        setCategories((prev) => prev.filter((c) => c.id !== deletingCategory.id))
         toast.success('تم حذف القسم بنجاح!')
         setDeletingCategory(null)
         setIsDeleteOpen(false)
@@ -108,20 +107,20 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
             placeholder="ابحث عن قسم..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pr-10 pl-4 border-[#775a19]/25 bg-white text-[#031636] focus-visible:ring-[#775a19] rounded-lg text-right"
+            className="pr-10 pl-4 border-[#211a21]/20 bg-white text-[#211a21] focus-visible:ring-[#211a21] rounded-lg text-right"
           />
         </div>
 
         {/* Add Category Trigger */}
-        <Button onClick={() => setIsAddOpen(true)} className="w-full sm:w-auto bg-[#031636] hover:bg-[#1a2b4c] text-[#ffdea5] border border-[#ffdea5]/30 font-bold gap-2 transition-all duration-200 shadow-md">
+        <Button onClick={() => setIsAddOpen(true)} className="w-full sm:w-auto bg-[#211a21] hover:bg-[#2e242e] text-white border border-transparent font-bold gap-2 transition-all duration-200 shadow-md">
           <Plus className="h-4 w-4" />
           إضافة قسم جديد
         </Button>
 
         <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
-          <DialogContent className="border-zinc-200 bg-white text-[#031636] backdrop-blur-md max-w-md text-right">
+          <DialogContent className="border-zinc-200 bg-white text-[#211a21] backdrop-blur-md max-w-md text-right">
             <DialogHeader className="text-right">
-              <DialogTitle className="text-lg font-bold font-serif text-[#031636]">إضافة قسم جديد</DialogTitle>
+              <DialogTitle className="text-lg font-bold font-serif text-[#211a21]">إضافة قسم جديد</DialogTitle>
               <DialogDescription className="text-zinc-500 text-xs mt-1">
                 أنشئ قسماً جديداً لتصنيف منتجات المنيو. تأكد من أن الاسم فريد وغير مكرر.
               </DialogDescription>
@@ -134,7 +133,7 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
                   placeholder="مثال: مشروبات باردة"
                   value={newCategoryName}
                   onChange={(e) => setNewCategoryName(e.target.value)}
-                  className="border-[#775a19]/25 bg-white text-[#031636] focus-visible:ring-[#775a19] text-right"
+                  className="border-[#211a21]/20 bg-white text-[#211a21] focus-visible:ring-[#211a21] text-right"
                 />
               </div>
             </div>
@@ -149,7 +148,7 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
               <Button
                 onClick={handleAdd}
                 disabled={isPending}
-                className="bg-[#031636] hover:bg-[#1a2b4c] text-[#ffdea5] font-semibold"
+                className="bg-[#211a21] hover:bg-[#2e242e] text-white font-semibold"
               >
                 {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : 'إنشاء القسم'}
               </Button>
@@ -159,20 +158,20 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
       </div>
 
       {/* Categories Table list */}
-      <div className="rounded-xl border border-[#775a19]/10 bg-white overflow-hidden shadow-sm">
+      <div className="rounded-xl border border-[#211a21]/15 bg-white overflow-hidden shadow-sm">
         <Table className="text-right">
           <TableHeader className="bg-zinc-50/50">
             <TableRow className="border-zinc-100 hover:bg-transparent">
-              <TableHead className="text-right text-[#031636] font-bold">اسم القسم</TableHead>
-              <TableHead className="text-right text-[#031636] font-bold">تاريخ الإنشاء</TableHead>
-              <TableHead className="text-left text-[#031636] font-bold pl-6">الإجراءات</TableHead>
+              <TableHead className="text-right text-[#211a21] font-bold">اسم القسم</TableHead>
+              <TableHead className="text-right text-[#211a21] font-bold">تاريخ الإنشاء</TableHead>
+              <TableHead className="text-left text-[#211a21] font-bold pl-6">الإجراءات</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filteredCategories.length > 0 ? (
               filteredCategories.map((category) => (
                 <TableRow key={category.id} className="border-zinc-100 hover:bg-zinc-50/30 transition-colors">
-                  <TableCell className="font-semibold text-[#031636] py-4.5">{category.name}</TableCell>
+                  <TableCell className="font-semibold text-[#211a21] py-4.5">{category.name}</TableCell>
                   <TableCell className="text-zinc-400 text-xs">
                     {new Date(category.created_at).toLocaleDateString('ar-SA', {
                       year: 'numeric',
@@ -190,7 +189,7 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
                         setEditingName(category.name)
                         setIsEditOpen(true)
                       }}
-                      className="text-zinc-400 hover:bg-[#ffdea5]/25 hover:text-[#775a19] h-8 w-8"
+                      className="text-zinc-400 hover:bg-[#211a21]/5 hover:text-[#211a21] h-8 w-8"
                     >
                       <Pencil className="h-4 w-4" />
                     </Button>
@@ -224,9 +223,9 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
 
       {/* Edit Category Dialog */}
       <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
-        <DialogContent className="border-zinc-200 bg-white text-[#031636] backdrop-blur-md max-w-md text-right">
+        <DialogContent className="border-zinc-200 bg-white text-[#211a21] backdrop-blur-md max-w-md text-right">
           <DialogHeader className="text-right">
-            <DialogTitle className="text-lg font-bold font-serif text-[#031636]">تعديل القسم</DialogTitle>
+            <DialogTitle className="text-lg font-bold font-serif text-[#211a21]">تعديل القسم</DialogTitle>
             <DialogDescription className="text-zinc-500 text-xs mt-1">
               تعديل اسم القسم الحالي. تأكد من أن الاسم فريد وغير مكرر.
             </DialogDescription>
@@ -238,7 +237,7 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
                 id="edit-name"
                 value={editingName}
                 onChange={(e) => setEditingName(e.target.value)}
-                className="border-[#775a19]/25 bg-white text-[#031636] focus-visible:ring-[#775a19] text-right"
+                className="border-[#211a21]/20 bg-white text-[#211a21] focus-visible:ring-[#211a21] text-right"
               />
             </div>
           </div>
@@ -253,7 +252,7 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
             <Button
               onClick={handleEdit}
               disabled={isPending}
-              className="bg-[#031636] hover:bg-[#1a2b4c] text-[#ffdea5] font-semibold"
+              className="bg-[#211a21] hover:bg-[#2e242e] text-white font-semibold"
             >
               {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : 'حفظ التعديلات'}
             </Button>
@@ -263,11 +262,11 @@ export function CategoriesManager({ initialCategories }: CategoriesManagerProps)
 
       {/* Confirm Delete Dialog */}
       <Dialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
-        <DialogContent className="border-zinc-200 bg-white text-[#031636] backdrop-blur-md max-w-md text-right">
+        <DialogContent className="border-zinc-200 bg-white text-[#211a21] backdrop-blur-md max-w-md text-right">
           <DialogHeader className="text-right">
             <DialogTitle className="text-lg font-bold font-serif text-red-600">تأكيد حذف القسم</DialogTitle>
             <DialogDescription className="text-zinc-500 text-xs mt-1">
-              هل أنت متأكد من رغبتك في حذف القسم <span className="font-bold text-[#031636]">&quot;{deletingCategory?.name}&quot;</span>؟
+              هل أنت متأكد من رغبتك في حذف القسم <span className="font-bold text-[#211a21]">&quot;{deletingCategory?.name}&quot;</span>؟
             </DialogDescription>
             <p className="text-[11px] text-red-600 mt-3 bg-red-50 border border-red-100 p-2.5 rounded-lg leading-relaxed">
               تنبيه هام: سيؤدي حذف هذا القسم إلى حذف جميع المنتجات المندرجة تحته تلقائياً من المنيو. لا يمكن التراجع عن هذا الإجراء لاحقاً.
